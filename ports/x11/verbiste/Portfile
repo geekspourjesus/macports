@@ -4,7 +4,7 @@
 PortSystem          1.0
 name                verbiste
 version             0.1.41
-categories          x11
+categories          x11 education
 platforms           darwin
 license             GPL2
 maintainers         nomaintainer
