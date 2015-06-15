@@ -1,0 +1,33 @@
+2006-10-21  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* macros/codeset.m4: Upgrade to gettext-0.14.5.
+	* macros/gettext.m4: Upgrade to gettext-0.14.5.
+	* macros/glibc2.m4: New file, from gettext-0.14.5.
+	* macros/glibc21.m4: Upgrade to gettext-0.14.5.
+	* macros/iconv.m4: Upgrade to gettext-0.14.5.
+	* macros/intdiv0.m4: Upgrade to gettext-0.14.5.
+	* macros/intmax.m4: New file, from gettext-0.14.5.
+	* macros/inttypes.m4: Upgrade to gettext-0.14.5.
+	* macros/inttypes_h.m4: Upgrade to gettext-0.14.5.
+	* macros/inttypes-pri.m4: Upgrade to gettext-0.14.5.
+	* macros/isc-posix.m4: Upgrade to gettext-0.14.5.
+	* macros/lcmessage.m4: Upgrade to gettext-0.14.5.
+	* macros/lib-ld.m4: Upgrade to gettext-0.14.5.
+	* macros/lib-link.m4: Upgrade to gettext-0.14.5.
+	* macros/lib-prefix.m4: Upgrade to gettext-0.14.5.
+	* macros/longdouble.m4: New file, from gettext-0.14.5.
+	* macros/longlong.m4: New file, from gettext-0.14.5.
+	* macros/nls.m4: New file, from gettext-0.14.5.
+	* macros/po.m4: New file, from gettext-0.14.5.
+	* macros/printf-posix.m4: New file, from gettext-0.14.5.
+	* macros/progtest.m4: Upgrade to gettext-0.14.5.
+	* macros/signed.m4: New file, from gettext-0.14.5.
+	* macros/size_max.m4: New file, from gettext-0.14.5.
+	* macros/stdint_h.m4: Upgrade to gettext-0.14.5.
+	* macros/uintmax_t.m4: Upgrade to gettext-0.14.5.
+	* macros/ulonglong.m4: Upgrade to gettext-0.14.5.
+	* macros/wchar_t.m4: New file, from gettext-0.14.5.
+	* macros/wint_t.m4: New file, from gettext-0.14.5.
+	* macros/xsize.m4: New file, from gettext-0.14.5.
+	* macros/Makefile.am (EXTRA_DIST): Add the new files.
+

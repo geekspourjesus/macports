@@ -1,0 +1,83 @@
+Verbiste - Système de conjugaison française
+
+(See README for an English version of this file.)
+
+Copyright (C) 2003-2014 Pierre Sarrazin <http://sarrazip.com/>
+
+Ce programme est un logiciel libre; vous pouvez le redistribuer
+sous les termes de la GNU General Public License. Ce programme ne
+vient avec absolument aucune garantie. Voir le fichier COPYING pour
+les détails.
+
+Les fichiers data/conjugation-it.xml et data/verbs-it.xml ont été
+créés par Christophe Durville <http://polyglotte.tuxfamily.org>.
+Ils ont une double notice de copyright et sont distribués sous la
+même licence que le reste de Verbiste.
+
+Les fichiers src/gtk/verbiste.cls et src/gtk/verbiste.cfg ont été
+créés par J.J. Green, qui les a mis dans le domaine public.
+
+INSTALLATION: voir INSTALL.  Quelques options à noter pour le
+script configure:
+
+    --with-gnome-app            compile l'application GNOME
+    --with-mate-applet          compile l'applet pour le Panel de MATE
+    --with-gtk-app              compile l'application GTK+
+
+L'application GTK+ est identique à l'application GNOME, mais elle
+évite de dépendre des librairies GNOME.  Cependant, le dialogue
+Enregistrer de la version GTK+ ne se souvient pas du dernier
+répertoire utilisé (la version GNOME utilise l'API gnome-config
+pour ceci).  On peut faire compiler à la fois les applications GNOME
+et GTK+, qui s'appellent respectivement "verbiste" et "verbiste-gtk".
+
+Site Web du projet:
+http://sarrazip.com/dev/verbiste.html
+
+Pages de manuel installées par ce programme:
+
+    verbiste(1)                 au sujet de cette librairie
+    french-conjugator(3)        commande pour conjuguer des verbes français
+    french-deconjugator(3)      commande pour analyser des verbes conjugués
+
+Le répertoire 'examples' de l'archive des sources de la librairie
+contient des exemples de programmes Perl et Java qui appellent les
+commandes french-conjugator(1) et french-deconjugator(1) à partir de
+deux «pipes.»
+
+
+OUVRIR VERBISTE AVEC UN VERBE
+
+On peut passer un verbe comme argument aux applications graphiques
+`verbiste' et `verbiste-gtk' pour leur faire afficher une conjugaison
+initiale.
+
+
+AJOUTER DES VERBES
+
+Depuis la version 0.1.34, l'usager peut ajouter des verbes par un
+moyen qui évite d'éditer les fichiers distribués par Verbiste.
+
+Créez un répertoire ".verbiste" (sans les guillemets, mais avec le
+point initial) dans votre répertoire "home". Dans ce répertoire
+.verbiste, créez un fichier verbs-fr.xml contenant ceci par exemple:
+
+<?xml version="1.0"?>
+<verbs-fr>
+
+<v><i>smurfer</i>  <t>aim:er</t></v>
+
+</verbs-fr>
+
+L'élément dans la balise <t> doit être le nom d'un modèle de
+conjugaison défini dans le fichier conjugation-fr.xml, livré avec
+Verbiste. Ajoutez une ligne de type <v> pour chaque nouveau verbe.
+Il faut redémarrer Verbiste pour que les changements à ce fichier
+soient utilisables.
+
+Votre fichier doit être encodé en UTF-8, pas en Latin-1 (ISO-8859-1).
+
+
+PROBLÈMES: veuillez s.v.p. consulter le site Web:
+
+    http://sarrazip.com/dev/verbiste.html

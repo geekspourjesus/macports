@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.mate.panel.applet.%{PACKAGE_FULL_NAME}AppletFactory
+Exec=%{libexecdir}/verbiste-mate-applet

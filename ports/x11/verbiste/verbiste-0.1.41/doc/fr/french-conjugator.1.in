@@ -1,0 +1,154 @@
+.\" $Id: french-conjugator.1.in,v 1.10 2013/07/18 03:13:05 sarrazip Exp $
+.\" french-conjugator - Analyzer of conjugated French verbs
+.\" verbiste - French conjugation system
+.\" Copyright (C) 2003-2009 Pierre Sarrazin <http://sarrazip.com/>
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+.\" 02110-1301, USA.
+.\"
+.\"
+.TH french-conjugator "1" "@MANUAL_DATE_FR@" "" ""
+.SH NOM
+french-conjugator - conjugue des verbes fran\(,cais
+.SH SYNOPSIS
+.B echo aimer | french-conjugator > result.txt
+.SH DESCRIPTION
+\fBfrench-conjugator\fR
+lit la forme infinitive de verbes fran\(,cais
+de la ligne de commande ou de l'entr\('ee standard
+et \('ecrit (dans la sortie standard) la conjugaison compl\(`ete de ces
+verbes, s'ils sont connus.
+.PP
+L'entr\('ee standard n'est pas lue si des verbes sont pass\('es sur la
+ligne de commande.
+.PP
+Chaque mode et temps est introduit par une ligne qui commence par
+un trait d'union et un espace, et termine par un deux-points.
+Le temps et le mode sur cette ligne sont toujours en anglais,
+sans \('egard aux param\(`etres r\('egionaux de l'usager.
+(Ceci sert \(`a faciliter le parsing du r\('esultat.
+Pour une interface-usager en fran\(,cais, voir l'application et l'applet GNOME.)
+La conjugaison est termin\('ee par une ligne qui ne contient qu'un trait d'union.
+Si le verbe entr\('e est inconnu ou s'il n'est pas dans sa forme infinitive,
+seule cette ligne est \('ecrite.
+.PP
+La commande \('ecoule son tampon d'\('ecriture apr\(`es avoir fini chaque r\('eponse.
+Ceci permet \(`a la commande d'\(^etre facilement appel\('ee \(`a partir d'un autre
+programme via deux \(Fopipes.\(Fc
+.PP
+La commande commence par charger sa base de donn\('ees \(`a partir de fichiers XML
+(situ\('es typiquement dans /usr/share/verbiste).
+Ceci prend un certain temps, alors c'est une bonne id\('ee de faire r\('epondre
+la commande \(`a plusieurs requ\(^etes plut\(^ot que de l'ex\('ecuter pour chaque requ\(^ete.
+.PP
+L'archive des sources de la librairie verbiste contient des exemples
+de programmes en Perl et en Java qui illustrent cette technique.
+.PP
+Il ne doit pas y avoir de caract\(`eres blancs au d\('ebut ou \(`a la fin 
+des lignes lues par la commande.
+.PP
+Au \fBparticipe pass\('e\fR, quatre lignes sont \('ecrites: elles correspondent
+dans l'ordre au masculin singulier, masculine pluriel, f\('eminin singulier et
+f\('eminin pluriel.
+.SH OPTIONS
+.TP
+\fB\-\-help\fR
+afficher une page d'aide et quitter
+.TP
+\fB\-\-version\fR
+afficher le num\('ero de version et quitter
+.TP
+\fB\-\-lang=L\fR
+s\('electionne la langue \(`a utiliser
+(\fBfr\fR pour le fran\(,cais ou \fBit\fR pour l'italien);
+le fran\(,cais est la langue par d\('efaut
+.TP
+\fB\-\-mode=M\fR
+afficher seulement le monde \fBM\fR, o\(`u \fBM\fR peut \(^etre
+\fBinfinitive\fR,
+\fBindicative\fR,
+\fBconditional\fR,
+\fBsubjunctive\fR,
+\fBimperative\fR ou
+\fBparticiple\fR
+.TP
+\fB\-\-tense=T\fR
+afficher seulement le temps \fBT\fR, o\(`u \fBT\fR peut \(^etre
+\fBpresent\fR,
+\fBpast\fR,
+\fBimperfect\fR ou
+\fBfuture\fR
+.TP
+\fB\-\-pronouns\fR
+afficher les pronoms
+.TP
+\fB\-\-all-infinitives\fR
+\('ecrire la forme infinitive de tous les verbes dans la base de connaissances,
+une par ligne, non ordonn\('ee -- les autres arguments pass\('es sur la ligne
+de commande sont ignor\('es
+.SH EXAMPLES
+$ french-conjugator aimer
+.br
+- infinitive present:
+.br
+aimer
+.br
+- indicative present:
+.br
+aime
+.br
+aimes
+.br
+aime
+.br
+aimons
+.br
+aimez
+.br
+aiment
+.br
+- indicative imperfect:
+.br
+aimais
+.br
+aimais
+.br
+aimait
+.br
+[...]
+.br
+- participle past:
+.br
+aim\('e
+.br
+aim\('es
+.br
+aim\('ee
+.br
+aim\('ees
+.br
+-
+.br
+.SH LICENCE
+Ce programme est un logiciel libre; vous pouvez le redistribuer sous les
+termes de la GNU General Public License.
+Ce programme ne vient avec absolument aucune garantie.
+.SH AUTEUR
+Voir la page de manuel de verbiste(3).
+.SH BOGUES
+Voir la page de manuel de verbiste(3).
+.SH VOIR AUSSI
+verbiste(3), french-deconjugator(1).
+

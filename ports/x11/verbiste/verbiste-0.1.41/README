@@ -1,0 +1,82 @@
+Verbiste - French conjugation system
+
+(See LISEZMOI for a French version of this file.)
+(Voyez LISEZMOI pour une version française de ce fichier.)
+
+Copyright (C) 2003-2014 Pierre Sarrazin <http://sarrazip.com/>
+
+This program is free software; you may redistribute it under the
+terms of the GNU General Public License.  This program has absolutely
+no warranty.  See the file COPYING for details.
+
+The data/conjugation-it.xml and data/verbs-it.xml files were
+created by Christophe Durville <http://polyglotte.tuxfamily.org>.
+They have a double copyright notice and are distributed under the
+same license as the rest of Verbiste.
+
+Note that src/gtk/verbiste.cls and src/gtk/verbiste.cfg were written
+by J.J. Green, who put them in the public domain.
+
+INSTALLATION: see INSTALL.  Noteworthy configuration options:
+
+    --with-gnome-app            compiles the GNOME application
+    --with-mate-applet          compiles the MATE Panel applet
+    --with-gtk-app              compiles the GTK+ application
+
+The GTK+ app is identical to the GNOME app, but it avoids any
+dependency on the GNOME libraries.  However, the GTK+ version's Save
+dialog does not remember the last directory used (the GNOME version
+uses the gnome-config API for this).  One can compile both the GNOME
+and GTK+ applications, which are named respectively "verbiste" and
+"verbiste-gtk".
+
+Main requirements: iconv, libxml2, MATE Panel (for applet), Perl's
+XML::Parser module (for compilation).
+
+Home Page:
+http://sarrazip.com/dev/verbiste.html
+
+Manual pages installed by this package:
+
+    verbiste(1)                 about this library and the GNOME interfaces
+    french-conjugator(3)        command to conjugate French verbs
+    french-deconjugator(3)      command to analyze conjugated French verbs
+
+The 'examples' directory of the source archive contains Perl and Java
+programs that illustrate how to call the french-deconjugator command
+as an external process through two pipes.
+
+
+OPENING VERBISTE WITH A VERB
+
+You can pass a verb as an argument to the `verbiste' or `verbiste-gtk'
+graphical programs to make them display an initial conjugation.
+
+
+ADDING YOUR OWN VERBS
+
+Since version 0.1.34, the user can add verbs in a way that avoids
+editing the files distributed with Verbiste.
+
+Create a directory called ".verbiste" (without the quotes, but with
+the leading period) in your home directory. In that .verbiste directory,
+create a file called verbs-fr.xml and put this in it for example:
+
+<?xml version="1.0"?>
+<verbs-fr>
+
+<v><i>smurfer</i>  <t>aim:er</t></v>
+
+</verbs-fr>
+
+The element in the <t> tag must be the name of a conjugation model
+defined in the conjugation-fr.xml file distributed with Verbiste.
+Add a <v> line for each new verb. You must restart Verbiste for
+changes to this file to become usable.
+
+Your file must be encoded in UTF-8, not in Latin-1 (ISO-8859-1).
+
+
+TROUBLESHOOTING: please see the Web site:
+
+    http://sarrazip.com/dev/verbiste.html

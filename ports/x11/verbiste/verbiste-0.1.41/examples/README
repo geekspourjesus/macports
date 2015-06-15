@@ -1,0 +1,44 @@
+conjugator.c
+
+    Conjugator program that demonstrates the C API.
+    This programs works in Latin-1.
+
+deconjugator.c
+
+    Deconjugator program that demonstrates the C API.
+    This programs works in Latin-1.
+
+FrenchDeconjugatorTester.java
+
+    Java program that calls the french-deconjugator command through
+    two pipes with Runtime.getRuntime().exec().
+
+    To compile this program into a native executable using the
+    GNU Java compiler:
+
+        gcj --main=FrenchDeconjugatorTester FrenchDeconjugatorTester.java
+
+    This will create an executable called a.out, which expects to find
+    the french-deconjugator command in the current directory.  If this
+    command is elsewhere, a.out will accept the complete file name of
+    the french-deconjugator command as an executable:
+
+        a.out ../src/commands/french-deconjugator
+
+test-french-deconjugator.pl
+
+    Perl program that calls the french-deconjugator command
+    through two pipes with open2().  This program expects the
+    french-deconjugator command to be in the PATH.
+
+trans-tenses.pl
+
+    Perl program that translates the mode and tense names written
+    by french-conjugator from English to French (e.g., "infinitive
+    present" becomes "infinitif présent").  The french-conjugator
+    command writes these mode and tense names in English so
+    that they can be used as fixed keywords by other programs.
+    (The same principle holds for the french-deconjugator command.)
+    This script writes in UTF-8.
+
+$Id: README,v 1.3 2009/07/03 04:05:40 sarrazip Exp $

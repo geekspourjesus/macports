@@ -1,0 +1,79 @@
+.\" $Id: verbiste.3.in,v 1.8 2013/05/20 21:01:30 sarrazip Exp $
+.\" verbiste - French conjugation system
+.\" Copyright (C) 2003-2013 Pierre Sarrazin <http://sarrazip.com/>
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+.\" 02110-1301, USA.
+.\"
+.\"
+.TH verbiste "3" "@MANUAL_DATE_FR@" "" ""
+.SH NOM
+verbiste \- french conjugation system
+.SH SYNOPSIS
+.B g++ prog.cpp `pkg-config --cflags --libs libxml-2.0` -lverbiste
+.SH DESCRIPTION
+\fBVerbiste\fR
+est une librairie qui conjugue des verbes fran\(,cais donn\('es dans leur
+forme infinitive et qui analyse des verbes fran\(,cais conjugu\('es.
+C'est aussi une application GNOME et une application GTK+.
+.PP
+Il y a deux commandes, nomm\('ees
+\fBfrench-conjugator(1)\fR
+et
+\fBfrench-deconjugator(1)\fR
+qui rendent ces fonctionnalit\('es disponibles \(`a la ligne de commande
+et \(`a partir de scripts.
+.PP
+L'application GNOME devrait \(^etre disponible sous le menu Office ou Bureau.
+Elle peut aussi \(^etre d\('emarr\('ee \(`a la ligne de commande en tapant
+\fBverbiste\fR.
+Un verbe peut être passé comme argument pour que la fenêtre affiche
+sa conjugaison automatiquement.
+.PP
+Si l'application GTK+ est installée, elle peut être exécutée en tapant
+\fBverbiste-gtk\fR. Elle accepte aussi un verbe comme argument.
+.SH EXEMPLES
+L'archive des sources de la librairie contient des exemples de
+programmes Perl et Java qui appellent les commandes
+\fBfrench-conjugator(1)\fR
+et
+\fBfrench-deconjugator(1)\fR.
+Il y a aussi des exemples de programmes utilisant l'interface de
+programmation en C.
+.PP
+La librairie et les commandes utilisent des bases de connaissances
+sur les verbes et les mod\(`eles de conjugaisons qui sont repr\('esent\('ees
+en XML.  Ces fichiers XML sont install\('es avec la librairie
+(typiquement dans /usr/share/verbiste-0.1).
+.SH LICENCE
+Ce programme est un logiciel libre; vous pouvez le redistribuer sous les
+termes de la GNU General Public License, version 2 ou ultérieure.
+Ce programme ne vient avec absolument aucune garantie.
+.SH AUTEUR
+Pierre Sarrazin
+.PP
+Voyez la page Web de Verbiste:
+.br
+http://sarrazip.com/dev/verbiste.html
+.PP
+Les commentaires sont les bienvenus.
+.SH VOIR AUSSI
+french-conjugator(1), french-deconjugator(1).
+.SH MALFONCTIONS
+L'objet FrenchVerbDictionary n'est pas compl\(`etement d\('etruit quand son
+destructeur est appel\('e, de fa\(,con \(`a \('eviter le temps de destruction
+excessivement long de sa treille interne.
+Une seule instance de cette classe devrait \(^etre cr\('e\('ee,
+et elle devrait \(^etre d\('etruite lorsque le programme termine.

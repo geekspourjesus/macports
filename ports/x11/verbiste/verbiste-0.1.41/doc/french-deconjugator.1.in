@@ -1,0 +1,122 @@
+.\" $Id: french-deconjugator.1.in,v 1.12 2013/07/18 03:13:05 sarrazip Exp $
+.\" french-deconjugator - Analyzer of conjugated French verbs
+.\" verbiste - French conjugation system
+.\" Copyright (C) 2003-2009 Pierre Sarrazin <http://sarrazip.com/>
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+.\" 02110-1301, USA.
+.\"
+.\"
+.TH french-deconjugator "1" "@MANUAL_DATE_EN@" "" ""
+.SH NAME
+french-deconjugator - analyze conjugated French verbs
+.SH SYNOPSIS
+.B echo aim\('e | french-deconjugator > result.txt
+.SH DESCRIPTION
+\fBfrench-deconjugator\fR
+reads conjugated French verbs from
+the command line or from standard input
+and writes (to standard output)
+the verb's \fBinfinitive\fR form,
+the \fBmode\fR (infinitive, indicative, conditional, subjunctive,
+imperative or participle),
+the \fBtense\fR (present, past, imperfect, future),
+the \fBperson\fR (1, 2 or 3,
+while 0 is used for the present participle tense,
+and 4 and 5 are used in the past participle tense),
+and
+the \fBnumber\fR (singular or plural).
+These fields are separated by a comma and a space.
+.PP
+The standard input is not read if verbs are passed as command-line
+arguments.
+.PP
+By convention, persons 4 and 5 are used in the
+\fBpast participle\fR
+tense to indicate the gender:
+4 means masculine (e.g., "aim\('e" or "aim\('es")
+and 5 means feminine (e.g., "aim\('ee" or "aim\('ees").
+.PP
+A single conjugated form can correspond to more than one mode,
+tense and person.
+In this case, each alternative is written on its own line.
+.PP
+In all cases, the end of the answer is marked by an empty line.
+If the word is unknown, only this empty line is written.
+The names for the mode, tense and number are always in English.
+(This is meant to facilitate automatic parsing of the output.
+For a French user interface, see the GNOME application and applet.)
+.PP
+The command flushes its output buffer after finishing each answer.
+This allows the command to be easily called from another program
+through two pipes.
+.PP
+The command starts by loading its database from XML files
+(stored typically in /usr/share/verbiste).
+This takes some time, so it is a good idea to have the command
+answer many requests instead of running it for each request.
+.PP
+The verbiste library's source archive contains Perl and Java
+example programs that illustrate this technique.
+.PP
+This commands expects to read Latin-1 characters and writes Latin-1 characters.
+There must not be any leading or trailing white spaces on the lines read
+by the command.
+.SH OPTIONS
+.TP
+\fB\-\-help\fR
+display a help page and exit
+.TP
+\fB\-\-version\fR
+display version information and exit
+.TP
+\fB\-\-lang=L\fR
+select the language to use (\fBfr\fR for French or \fBit\fR for Italian);
+French is the default language
+.TP
+\fB\-\-all-infinitives\fR
+print the infinitive form of all the verbs in the knowledge base,
+one per line, unsorted; other command-line arguments are ignored
+.SH EXAMPLES
+$ french-deconjugator aim\('e
+.br
+aimer, participle, past, 0, singular
+.br
+
+.br
+$ echo \-ne 'a\enplu\en\('et\('e\en' | french-deconjugator
+.br
+avoir, indicative, present, 3, singular
+
+.br
+plaire, participle, past, 0, singular
+.br
+pleuvoir, participle, past, 0, singular
+.br
+
+.br
+\(^etre, participle, past, 0, singular
+.br
+
+.br
+.SH LICENSE
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License.  This program has absolutely no warranty.
+.SH AUTHOR
+See the verbiste(3) manual page.
+.SH BUGS
+See the verbiste(3) manual page.
+.SH SEE ALSO
+verbiste(3), french-conjugator(1).

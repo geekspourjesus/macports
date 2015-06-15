@@ -1,0 +1,151 @@
+.\" $Id: french-conjugator.1.in,v 1.11 2013/07/18 03:13:05 sarrazip Exp $
+.\" french-conjugator - Analyzer of conjugated French verbs
+.\" verbiste - French conjugation system
+.\" Copyright (C) 2003-2009 Pierre Sarrazin <http://sarrazip.com/>
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+.\" 02110-1301, USA.
+.\"
+.\"
+.TH french-conjugator "1" "@MANUAL_DATE_EN@" "" ""
+.SH NAME
+french-conjugator - conjugate French verbs
+.SH SYNOPSIS
+.B echo aimer | french-conjugator > result.txt
+.SH DESCRIPTION
+\fBfrench-conjugator\fR
+reads the infinitive form of French verbs from
+the command line or from standard input
+and writes (to standard output) the complete conjugation of those
+verbs, if they are known.
+.PP
+The standard input is not read if verbs are passed as command-line
+arguments.
+.PP
+Each mode and tense is introduced by a line that starts with a hyphen
+and a space, and ends with a colon.
+The mode and tense in that line are always in English, regardless
+of the user's current locale.
+(This is meant to facilitate automatic parsing of the output.
+For a French user interface, see the GNOME application and applet.)
+The conjugation is ended with a line that only contains a hyphen.
+If the given verb is unknown or not in the infinitive form,
+only this line is written.
+.PP
+The command flushes its output buffer after finishing each answer.
+This allows the command to be easily called from another program
+through two pipes.
+.PP
+The command starts by loading its database from XML files
+(stored typically in /usr/share/verbiste).
+This takes some time, so it is a good idea to have the command
+answer many requests instead of running it for each request.
+.PP
+The verbiste library's source archive contains Perl and Java
+example programs that illustrate this technique.
+.PP
+There must not be any leading or trailing white spaces on the lines read
+by the command.
+.PP
+In the \fBpast participle\fR tense, four lines are written: they correspond
+in order
+to the masculine singular, masculine plural, feminine singular and
+feminine plural.
+.SH OPTIONS
+.TP
+\fB\-\-help\fR
+display a help page and exit
+.TP
+\fB\-\-version\fR
+display version information and exit
+.TP
+\fB\-\-lang=L\fR
+select the language to use (\fBfr\fR for French or \fBit\fR for Italian);
+French is the default language
+.TP
+\fB\-\-mode=M\fR
+only display mode \fBM\fR, where \fBM\fR can be
+\fBinfinitive\fR,
+\fBindicative\fR,
+\fBconditional\fR,
+\fBsubjunctive\fR,
+\fBimperative\fR or
+\fBparticiple\fR
+.TP
+\fB\-\-tense=T\fR
+only display tense \fBT\fR, where \fBT\fR can be
+\fBpresent\fR,
+\fBpast\fR,
+\fBimperfect\fR or
+\fBfuture\fR
+.TP
+\fB\-\-pronouns\fR
+show the pronouns
+.TP
+\fB\-\-all-infinitives\fR
+print the infinitive form of all the verbs in the knowledge base,
+one per line, unsorted; other command-line arguments are ignored
+.SH EXAMPLES
+$ french-conjugator aimer
+.br
+- infinitive present:
+.br
+aimer
+.br
+- indicative present:
+.br
+aime
+.br
+aimes
+.br
+aime
+.br
+aimons
+.br
+aimez
+.br
+aiment
+.br
+- indicative imperfect:
+.br
+aimais
+.br
+aimais
+.br
+aimait
+.br
+[...]
+.br
+- participle past:
+.br
+aim\('e
+.br
+aim\('es
+.br
+aim\('ee
+.br
+aim\('ees
+.br
+-
+.br
+.SH LICENSE
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License.  This program has absolutely no warranty.
+.SH AUTHOR
+See the verbiste(3) manual page.
+.SH BUGS
+See the verbiste(3) manual page.
+.SH SEE ALSO
+verbiste(3), french-deconjugator(1).

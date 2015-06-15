@@ -1,0 +1,50 @@
+# Only use the following variables inside %{}:
+# libexecdir
+# PACKAGE
+# APPLET_FULL_NAME
+# APPLET_FULL_NAME_FR
+# APPLET_DESCRIPTION
+# APPLET_DESCRIPTION_FR
+# APPLET_CATEGORY
+# APPLET_CATEGORY_FR
+#
+# Note that this .pre file is not processed by configure, but by a target
+# in Makefile.am.
+#
+<oaf_info>
+
+<oaf_server iid="OAFIID:GNOME_%{PACKAGE}_Factory"
+    	    type="exe"
+            location="%{libexecdir}/%{PACKAGE}-applet">
+
+        <oaf_attribute name="repo_ids" type="stringv">
+                <item value="IDL:Bonobo/GenericFactory:1.0"/>
+                <item value="IDL:Bonobo/Unknown:1.0"/>
+        </oaf_attribute>
+        <oaf_attribute name="name" type="string"
+		value="%{PACKAGE} Applet Factory"/>
+        <oaf_attribute name="description" type="string"
+		value="Factory for creating the '%{PACKAGE}' applet"/>
+
+</oaf_server>
+
+<oaf_server iid="OAFIID:GNOME_%{PACKAGE}"
+	    type="factory"
+            location="OAFIID:GNOME_%{PACKAGE}_Factory">
+
+        <oaf_attribute name="repo_ids" type="stringv">
+                <item value="IDL:GNOME/Vertigo/PanelAppletShell:1.0"/>
+                <item value="IDL:Bonobo/Control:1.0"/>
+                <item value="IDL:Bonobo/Unknown:1.0"/>
+        </oaf_attribute>
+        <oaf_attribute name="name" type="string" value="%{APPLET_FULL_NAME}"/>
+        <oaf_attribute name="name-fr" type="string" value="%{APPLET_FULL_NAME_FR}"/>
+        <oaf_attribute name="description" type="string" value="%{APPLET_DESCRIPTION}"/>
+        <oaf_attribute name="description-fr" type="string" value="%{APPLET_DESCRIPTION_FR}"/>
+        <oaf_attribute name="panel:category" type="string" value="%{APPLET_CATEGORY}"/>
+        <oaf_attribute name="panel:category-fr" type="string" value="%{APPLET_CATEGORY_FR}"/>
+        <oaf_attribute name="panel:icon" type="string" value="%{PACKAGE}.png"/>
+
+</oaf_server>
+
+</oaf_info>

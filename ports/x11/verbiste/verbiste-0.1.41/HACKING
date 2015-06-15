@@ -1,0 +1,185 @@
+HACKING on Verbiste
+
+
+Sections of this file:
+
+    1. How to add verbs and conjugation templates
+    2. How the conjugation code works
+
+
+1. How to add verbs and conjugation templates
+
+    In the file data/verbs-fr.xml, some lines are of this form:
+
+        <v><i>abouter</i>               <t>aim:er</t></v>
+        <v><i>aboutir</i>               <t>fin:ir</t></v>
+        <v><i>aboyer</i>                <t>netto:yer</t></v>
+
+    The <i> tag gives the infinitive form and the <t> tag gives the
+    "conjugation template" that is followed by the verb.
+
+    The templates are defined in the file data/conjugation-fr.xml.
+    In this file, the <template> tag has a name attribute that is
+    of the form <radical>:<termination>.  For example, the template
+    name "aim:er" means that the non-changing prefix is always "aim".
+    Some template names start with a colon (e.g., ":être") because the
+    whole word can change in some tenses (e.g., "je suis").
+
+    The <template> tag contains the inflections of the several modes and
+    tenses of the French language.  A tense is a list of all applicable
+    persons for that tense.  Each person is represented by a <p> tag,
+    which can contain zero or more <i> tags, which give the actual text
+    of the inflections for that person.
+
+    For example, the indicative present tense of the "aim:er" template
+    is written like this:
+
+        <indicative>
+                <present>
+                        <p><i>e</i></p>
+                        <p><i>es</i></p>
+                        <p><i>e</i></p>
+                        <p><i>ons</i></p>
+                        <p><i>ez</i></p>
+                        <p><i>ent</i></p>
+                </present>
+
+    The six persons listed correspond to the usual pronouns: je, tu,
+    il, nous, vous, ils.  A <p> tag contains no <i> tag when it is
+    impossible to conjugate the verb for that person and that tense.
+    A <p> tag can contain more than one <i> tag when multiple variants
+    are widely accepted.  The template "ass:eoir" for example has some
+    <p> tags that contain three <i> tags.
+
+    The content of an <i> tag is appended to the radical part of the
+    template name to form the complete conjugated form of the verb.
+    For example, the radical "aim" followed by the inflection "ons"
+    gives "aimons".
+
+    After modifying those two XML files, the command
+
+        make check-data
+
+    can be given from the project's main directory (the parent of the
+    'data' directory) to check the validity of the files.  This will
+    call xmllint, an XML validation command that comes with libxml2.
+
+
+2. How the conjugation code works
+
+    Construct an instance of the FrenchVerbDictionary class.
+
+    Get the infinitive form of a verb, not a conjugated one (e.g.,
+    "aimer" but not "aimons").
+
+    Convert the verb to lower-case.  It it is encoded in
+    Latin-1 (ISO-8859-1), use the tolowerLatin1() method on the
+    FrenchVerbDictionary object.
+
+    It the verb is in Latin-1, convert it to UTF-8 with the
+    latin1ToUTF8() method of the FrenchVerbDictionary object.
+
+    Get the name of the verb's conjugation template, by calling
+    the getVerbTemplate() method.  It this method returns NULL,
+    then the given word is not known, or it is not an infinitive
+    form known to Verbiste.
+
+        For regular verbs of the first group like "aimer" or "coder",
+        the template is named "aim:er".  The colon's position
+        represents the fact that in the complete conjugation,
+        only the last two letters of the infinitive form will be
+        replaced by the appropriate ending (je cod[e], nous cod[ons],
+        qu'il cod[ât], etc).  The part that comes before the colon
+        is invariant.
+
+        Note that some template names start with a colon because
+        the entire word can change in some tenses and persons.
+        For example, the past participle of the verb "avoir"
+        (to have) is "eu", as in "j'ai eu du pain" (I have had
+        some bread).
+
+    Get the conjugation template's complete specification from the
+    template name obtained in the last step.  This is done with
+    the getTemplate() method.  If this method returns NULL, then
+    the given template name is not known to Verbiste.  This should
+    not happen with template names obtained from getVerbTemplate().
+
+    Obtain the "radical" part of the given verb with the getRadical()
+    method.
+
+        The radical part of a verb is the prefix that stays
+        invariant.  This method receives the infinitive form
+        of the given word and the corresponding template name.
+        If for example the infinitive is "coder" and the template
+        name is "aim:er", then the radical part is "cod".  It will
+        be concatenated with a series of endings to produce the
+        whole conjugation.
+
+    To produce the whole conjugation of a verb, iterate through
+    all valid (non composed) modes and tenses.
+
+        The following combinations of modes and tenses are valid
+        in French.  The identifiers given here are defined by the
+        library in the C++ namespace "verbiste".
+
+            INFINITIVE_MODE     PRESENT_TENSE
+            INDICATIVE_MODE     PRESENT_TENSE
+            INDICATIVE_MODE     IMPERFECT_TENSE
+            INDICATIVE_MODE     FUTURE_TENSE
+            INDICATIVE_MODE     PAST_TENSE
+            CONDITIONAL_MODE    PRESENT_TENSE
+            SUBJUNCTIVE_MODE    PRESENT_TENSE
+            SUBJUNCTIVE_MODE    IMPERFECT_TENSE
+            IMPERATIVE_MODE     PRESENT_TENSE
+            PARTICIPLE_MODE     PRESENT_TENSE
+            PARTICIPLE_MODE     PAST_TENSE
+
+        Note that Verbiste does not produce the conjugation for
+        the composed tenses (composed past [j'ai codé], anterior
+        future [j'aurai codé], etc).  These tenses can be produced
+        by using the past participle (e.g., "codé") with a simple
+        tense (here, indicative present and indicative future).
+
+    To produce the conjugation for a specific mode-tense combination,
+    use the generateTense() method.
+
+        This method requires the radical part of the original
+        infinitive, the conjugation template specification,
+        the *_MODE value, the *_TENSE value, and a reference to
+        a C++ vector of vectors of strings which will receive
+        the results.
+
+    Use the resulting structure -- for example to display the
+    conjugation for a certain tense.  The strings are in UTF-8.
+    The utf8ToLatin1() method can be used to convert to ISO-8859-1.
+
+        The result is of type vector< vector<string> >.  For each
+        person (in most tenses: je, tu, il, nous, vous, il), there
+        may be zero, one or more ways to conjugate a verb.
+
+        For example, there is only one way to conjugate "coder"
+        at the first person singular of the indicative present:
+        je code.  But for "payer" (to pay), one can write both
+        "je paie" and "je paye".  For some verbs, there is nothing.
+        The verb "férir" for example can only be used in the
+        infinitive and in the past participle.
+
+        This is why the results are structures the way they are.
+        The received vector contains up to six vectors-of-strings.
+        For the verb "payer" in the indicative present, the results
+        can be represented this way:
+
+            {
+                { paie, paye },
+                { paies, payes },
+                { paie, paye },
+                { payons },
+                { payez },
+                { paient },
+            }
+
+    The sources of the "french-conjugation" command should be studied
+    as an example of the procedure described here.
+
+
+$Id: HACKING,v 1.4 2006/08/29 03:00:05 sarrazip Exp $

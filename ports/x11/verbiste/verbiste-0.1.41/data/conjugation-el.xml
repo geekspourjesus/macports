@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+
+<!--
+	conjugation-el.xml - Greek conjugation templates
+	Copyright (C) 2010 Pierre Sarrazin <http://sarrazip.com/>
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+	02110-1301, USA.
+-->
+
+<!DOCTYPE conjugation-el [
+	<!ELEMENT conjugation-el (template+)>
+	<!ELEMENT template (present-indicative, present-subjunctive,
+	                    present-imperative, present-gerund,
+	                    past-imperfect-indicative, past-perfect-indicative,
+	                    past-perfect-subjunctive, past-perfect-imperative,
+	                    past-perfect-infinitive
+	                    )>
+	<!ATTLIST template name CDATA #REQUIRED>
+
+        <!ELEMENT present-indicative (active, passive)>
+        <!ELEMENT present-subjunctive (active, passive)>
+        <!ELEMENT present-imperative (imp-active, imp-passive)>
+        <!ELEMENT present-gerund (present)>
+        <!ELEMENT past-imperfect-indicative (active, passive)>
+        <!ELEMENT past-perfect-indicative (active, passive)>
+        <!ELEMENT past-perfect-subjunctive (active, passive)>
+        <!ELEMENT past-perfect-imperative (imp-active, imp-passive)>
+        <!ELEMENT past-perfect-infinitive (past-perfect)>
+
+	<!ELEMENT active (p, p, p, p, p, p)>
+        <!ELEMENT passive (p, p, p, p, p, p)>
+        <!ELEMENT imp-active (p, p)>
+        <!ELEMENT imp-passive (p, p)>
+	<!ELEMENT present (p)>
+        <!ELEMENT past-perfect (p)>
+
+	<!ELEMENT p (i*)>
+	<!ELEMENT i (#PCDATA)>
+]>
+
+<conjugation-el>
+
+<template name="foo:bar">
+
+        <present-indicative>
+                <active>
+                        <p><i>pr-ind-a-1</i></p>
+                        <p><i>pr-ind-a-2</i></p>
+                        <p><i>pr-ind-a-3</i></p>
+                        <p><i>pr-ind-a-4</i></p>
+                        <p><i>pr-ind-a-5</i></p>
+                        <p><i>pr-ind-a-6</i></p>
+                </active>
+                <passive>
+                        <p><i>pr-ind-p-1</i></p>
+                        <p><i>pr-ind-p-2</i></p>
+                        <p><i>pr-ind-p-3</i></p>
+                        <p><i>pr-ind-p-4</i></p>
+                        <p><i>pr-ind-p-5</i></p>
+                        <p><i>pr-ind-p-6</i></p>
+                </passive>
+        </present-indicative>
+
+        <present-subjunctive>
+                <active>
+                        <p><i>pr-sub-a-1</i></p>
+                        <p><i>pr-sub-a-2</i></p>
+                        <p><i>pr-sub-a-3</i></p>
+                        <p><i>pr-sub-a-4</i></p>
+                        <p><i>pr-sub-a-5</i></p>
+                        <p><i>pr-sub-a-6</i></p>
+                </active>
+                <passive>
+                        <p><i>pr-sub-p-1</i></p>
+                        <p><i>pr-sub-p-2</i></p>
+                        <p><i>pr-sub-p-3</i></p>
+                        <p><i>pr-sub-p-4</i></p>
+                        <p><i>pr-sub-p-5</i></p>
+                        <p><i>pr-sub-p-6</i></p>
+                </passive>
+        </present-subjunctive>
+
+        <present-imperative>
+                <imp-active>
+                        <p><i>pr-imp-a-2</i></p>
+                        <p><i>pr-imp-a-4</i></p>
+                </imp-active>
+                <imp-passive>
+                        <p><i>pr-imp-p-2</i></p>
+                        <p><i>pr-imp-p-4</i></p>
+                </imp-passive>
+        </present-imperative>
+
+        <present-gerund>
+                <present>
+                        <p><i>pr-ger</i></p>
+                </present>
+        </present-gerund>
+
+        <past-imperfect-indicative>
+                <active>
+                        <p><i>pa-ipf-ind-a-1</i></p>
+                        <p><i>pa-ipf-ind-a-2</i></p>
+                        <p><i>pa-ipf-ind-a-3</i></p>
+                        <p><i>pa-ipf-ind-a-4</i></p>
+                        <p><i>pa-ipf-ind-a-5</i></p>
+                        <p><i>pa-ipf-ind-a-6</i></p>
+                </active>
+                <passive>
+                        <p><i>pa-ipf-ind-p-1</i></p>
+                        <p><i>pa-ipf-ind-p-2</i></p>
+                        <p><i>pa-ipf-ind-p-3</i></p>
+                        <p><i>pa-ipf-ind-p-4</i></p>
+                        <p><i>pa-ipf-ind-p-5</i></p>
+                        <p><i>pa-ipf-ind-p-6</i></p>
+                </passive>
+        </past-imperfect-indicative>
+
+        <past-perfect-indicative>
+                <active>
+                        <p><i>pa-per-ind-a-1</i></p>
+                        <p><i>pa-per-ind-a-2</i></p>
+                        <p><i>pa-per-ind-a-3</i></p>
+                        <p><i>pa-per-ind-a-4</i></p>
+                        <p><i>pa-per-ind-a-5</i></p>
+                        <p><i>pa-per-ind-a-6</i></p>
+                </active>
+                <passive>
+                        <p><i>pa-per-ind-p-1</i></p>
+                        <p><i>pa-per-ind-p-2</i></p>
+                        <p><i>pa-per-ind-p-3</i></p>
+                        <p><i>pa-per-ind-p-4</i></p>
+                        <p><i>pa-per-ind-p-5</i></p>
+                        <p><i>pa-per-ind-p-6</i></p>
+                </passive>
+        </past-perfect-indicative>
+
+        <past-perfect-subjunctive>
+                <active>
+                        <p><i>pa-per-sub-a-1</i></p>
+                        <p><i>pa-per-sub-a-2</i></p>
+                        <p><i>pa-per-sub-a-3</i></p>
+                        <p><i>pa-per-sub-a-4</i></p>
+                        <p><i>pa-per-sub-a-5</i></p>
+                        <p><i>pa-per-sub-a-6</i></p>
+                </active>
+                <passive>
+                        <p><i>pa-per-sub-p-1</i></p>
+                        <p><i>pa-per-sub-p-2</i></p>
+                        <p><i>pa-per-sub-p-3</i></p>
+                        <p><i>pa-per-sub-p-4</i></p>
+                        <p><i>pa-per-sub-p-5</i></p>
+                        <p><i>pa-per-sub-p-6</i></p>
+                </passive>
+        </past-perfect-subjunctive>
+
+        <past-perfect-imperative>
+                <imp-active>
+                        <p><i>pa-per-imp-a-2</i></p>
+                        <p><i>pa-per-imp-a-4</i></p>
+                </imp-active>
+                <imp-passive>
+                        <p><i>pa-per-imp-p-2</i></p>
+                        <p><i>pa-per-imp-p-4</i></p>
+                </imp-passive>
+        </past-perfect-imperative>
+
+        <past-perfect-infinitive>
+                <past-perfect>
+                        <p><i>pa-per-inf</i></p>
+                </past-perfect>
+        </past-perfect-infinitive>
+
+</template>
+
+</conjugation-el>

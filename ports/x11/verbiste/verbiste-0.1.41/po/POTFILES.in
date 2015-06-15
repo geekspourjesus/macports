@@ -1,0 +1,7 @@
+# List of source files containing translatable strings.
+src/gui/conjugation.cpp
+src/gtk/gtk-app.cpp
+src/gtk/main-window.cpp
+src/gtk/util.cpp
+src/gnome/gnome-app.cpp
+src/gnome/panel-applet.cpp

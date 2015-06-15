@@ -1,0 +1,12 @@
+# .pc file for the pkg-config script.
+
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/verbiste-0.1
+
+Name: Verbiste
+Description: French conjugation system
+Version: 0.1.41
+Libs: -L/opt/local/lib -lxml2  -L${libdir} -lverbiste-0.1
+Cflags: -I${includedir} -I/opt/local/include/libxml2 

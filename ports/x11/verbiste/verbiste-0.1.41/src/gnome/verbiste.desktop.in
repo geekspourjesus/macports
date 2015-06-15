@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=@PACKAGE_FULL_NAME@
+Name[fr]=@PACKAGE_FULL_NAME@
+Categories=Office;
+Comment=@PACKAGE_SUMMARY_EN@
+Comment[fr]=@PACKAGE_SUMMARY_FR@
+Exec=@PACKAGE@
+Icon=@PACKAGE@
+Terminal=false
+Type=Application

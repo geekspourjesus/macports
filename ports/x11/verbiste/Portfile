@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+name                verbiste
+version             0.1.41
+categories          x11
+platforms           darwin
+license             GPL2
+maintainers         nomaintainer
+description         Verbiste is a French and Italian conjugation system
+long_description    \
+    Verbiste is a French conjugation system.\
+    It contains a C++ library, two programs that can be run from the command line \
+    or from another program, and a GNOME application. \
+    This application shows a text field in the GNOME Panel where the user can enter a conjugated verb and obtain its complete conjugation. \
+    The knowledge base is represented in XML and contains over 7000 French verbs. \
+    It also contains about 190 Italian verbs. \
+    The dialog allows selecting the language in which the verb is to be searched.
+homepage            http://perso.b2b2c.ca/sarrazip/dev/
+master_sites        ${homepage}
+checksums           md5 822ed70783a081505aaa36e49d562583
+depends_lib         port:libxml2
+
+

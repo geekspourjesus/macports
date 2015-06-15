@@ -1,0 +1,127 @@
+.\" $Id: french-deconjugator.1.in,v 1.11 2013/07/18 03:13:05 sarrazip Exp $
+.\" french-deconjugator - Analyzer of conjugated French verbs
+.\" verbiste - French conjugation system
+.\" Copyright (C) 2003-2009 Pierre Sarrazin <http://sarrazip.com/>
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+.\" 02110-1301, USA.
+.\"
+.\"
+.TH french-deconjugator "1" "@MANUAL_DATE_FR@" "" ""
+.SH NOM
+french-deconjugator - analyse un verbe fran\(,cais conjugu\('e
+.SH SYNOPSIS
+.B echo aim\('e | french-deconjugator > result.txt
+.SH DESCRIPTION
+\fBfrench-deconjugator\fR
+lit des verbes fran\(,cais conjugu\('es
+de la ligne de commande ou de l'entr\('ee standard
+et \('ecrit (dans sa sortie standard)
+la forme infinitive,
+le mode (mots-clefs anglais: 
+infinitive, indicative, conditional, subjunctive,
+imperative ou participle),
+le temps (mots clefs anglais:
+present, past, imperfect, future),
+la personne (1, 2 ou 3,
+tandis que 0 est utilis\('e pour le participe pr\('esent
+et 4 et 5 sont utilis\('es pour le participe pass\('e),
+et
+le nombre (mots-clefs anglais: 
+singular or plural).
+Ces champs sont s\('epar\('es par une virgule et un espace.
+.PP
+L'entr\('ee standard n'est pas lue si des verbes sont pass\('es sur la
+ligne de commande.
+.PP
+Par convention, les personnes 4 et 5 sont utilis\('ees au
+\fBparticipe pass\('e\fR
+pour indiquer le genre:
+4 signifie masculin (e.g., "aim\('e" ou "aim\('es"),
+et 5 signifie f\('eminin (e.g., "aim\('ee" ou "aim\('ees").
+.PP
+Une forme conjugu\('ee peut correspondre \(`a plus d'un mode, temps et personne.
+Dans ce cas, chaque alternative est \('ecrite sur sa propre ligne.
+.PP
+Dans tous les cas, la fin de la r\('eponse est marqu\('ee par une ligne vide.
+Si le mot \('etait inconnu, seule cette ligne vide est \('ecrite.
+Les noms des modes, temps et nombres sont toujours en anglais.
+(Ceci sert \(`a faciliter le parsing du r\('esultat.
+Pour une interface-usager en fran\(,cais, voir l'application et l'applet GNOME.)
+.PP
+La commande \('ecoule son tampon d'\('ecriture apr\(`es avoir fini chaque r\('eponse.
+Ceci permet \(`a la commande d'\(^etre facilement appel\('ee \(`a partir d'un autre
+programme via deux \(Fopipes\(Fc.
+.PP
+La commande commence par charger sa base de donn\('ees \(`a partir de fichiers XML
+(situ\('es typiquement dans /usr/share/verbiste).
+Ceci prend un certain temps, alors c'est une bonne id\('ee de faire r\('epondre
+la commande \(`a plusieurs requ\(^etes plut\(^ot que de l'ex\('ecuter pour chaque requ\(^ete.
+.PP
+L'archive des sources de la librairie verbiste contient des exemples
+de programmes en Perl et en Java qui illustrent cette technique.
+.PP
+Cette commande s'attend \(`a lire des caract\(`eres Latin-1 et \('ecrit
+des caract\(`eres Latin-1.
+Il ne doit pas y avoir de caract\(`eres blancs au d\('ebut ou \(`a la fin 
+des lignes lues par la commande.
+.SH OPTIONS
+.TP
+\fB\-\-help\fR
+afficher une page d'aide et quitter
+.TP
+\fB\-\-version\fR
+afficher le num\('ero de version et quitter
+.TP
+\fB\-\-lang=L\fR
+s\('electionne la langue \(`a utiliser
+(\fBfr\fR pour le fran\(,cais ou \fBit\fR pour l'italien);
+le fran\(,cais est la langue par d\('efaut
+.TP
+\fB\-\-all-infinitives\fR
+print the infinitive form of all the verbs in the knowledge base,
+one per line, unsorted -- other command-line arguments are ignored
+.SH EXEMPLES
+$ french-deconjugator aim\('e
+.br
+aimer, participle, past, 0, singular
+.br
+
+.br
+$ echo \-ne 'a\enplu\en\('et\('e\en' | french-deconjugator
+.br
+avoir, indicative, present, 3, singular
+
+.br
+plaire, participle, past, 0, singular
+.br
+pleuvoir, participle, past, 0, singular
+.br
+
+.br
+\(^etre, participle, past, 0, singular
+.br
+
+.br
+.SH LICENCE
+Ce programme est un logiciel libre; vous pouvez le redistribuer sous les
+termes de la GNU General Public License.
+Ce programme ne vient avec absolument aucune garantie.
+.SH AUTEUR
+Voir la page de manuel de verbiste(3).
+.SH BOGUES
+Voir la page de manuel de verbiste(3).
+.SH VOIR AUSSI
+verbiste(3), french-conjugator(1).
