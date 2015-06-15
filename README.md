@@ -7,7 +7,7 @@ These is my development repository for my local MacPorts. Feel free to use my lo
 
 To use my local MacPorts, you will have to set it up as a local portfile repository as follows:
 
-1. Clone the [repository](https://github.com/bmeurer/MacPorts) - `git clone git@github.com:bmeurer/MacPorts.git`
+1. Clone the [repository](https://github.com/geekspourjesus/MacPorts) - `git clone git@github.com:geekspourjesus/MacPorts.git`
 2. `cd MacPorts/ports`
 3. `(echo "file:/$PWD [nosync]" && cat /opt/local/etc/macports/sources.conf) > sources.conf && sudo mv sources.conf /opt/local/etc/macports/sources.conf`
 4. `portindex`
